@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphTest", "GraphTest\GraphTest.csproj", "{C33E5999-6F92-43F4-B97F-181A69B08269}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication", "WebApplication\WebApplication.csproj", "{5D526E9B-4930-4438-8A25-27B2DF9C3604}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C33E5999-6F92-43F4-B97F-181A69B08269}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C33E5999-6F92-43F4-B97F-181A69B08269}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C33E5999-6F92-43F4-B97F-181A69B08269}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C33E5999-6F92-43F4-B97F-181A69B08269}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D526E9B-4930-4438-8A25-27B2DF9C3604}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D526E9B-4930-4438-8A25-27B2DF9C3604}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D526E9B-4930-4438-8A25-27B2DF9C3604}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D526E9B-4930-4438-8A25-27B2DF9C3604}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E7F9340B-BBBD-4AF9-9C14-6D38233392C8}
+	EndGlobalSection
+EndGlobal
