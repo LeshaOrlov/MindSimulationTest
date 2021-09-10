@@ -12,6 +12,11 @@
       "Element": "SecondElement",
       "ElementInfo": "Это не настоящий элемент",
       "IsElement": false
+    },
+    {
+      "Element": "ThirdElement",
+      "ElementInfo": "Это третий элемент",
+      "IsElement": true
     }
   ]
 }

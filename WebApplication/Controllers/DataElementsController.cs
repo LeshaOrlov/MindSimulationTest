@@ -97,13 +97,9 @@ namespace WebApplication.Controllers
             {
                 try
                 {
-                    var entity = _data.ElementsList.FirstOrDefault(m => m.Element == id);
-                    if (entity == null)
-                    {
-                        return NotFound();
-                    }
+                    var index = _data.ElementsList.FindIndex(m => m.Element == id);
 
-                    entity = dataElement;
+                    _data.ElementsList[index] = dataElement;
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -167,7 +163,7 @@ namespace WebApplication.Controllers
         public IActionResult ResaveJsonFile()
         {
             dataManager.Save(_data, "Files\\testJson.json");
-            return View();
+            return Redirect("Index");
         }
 
         //функции для работы с базой данных
