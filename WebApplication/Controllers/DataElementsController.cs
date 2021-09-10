@@ -15,19 +15,19 @@ namespace WebApplication.Controllers
 {
     public class DataElementsController : Controller
     {
-        private Data _context;
+        private Data _data;
         private readonly DataManager dataManager;
 
         public DataElementsController(DataManager manager)
         {
             dataManager = manager;
-            _context = manager.data;
+            _data = manager.data;
         }
 
         // GET: DataElementsList
         public IActionResult Index()
         {
-            return View( _context.ElementsList);
+            return View( _data.ElementsList);
         }
 
         // GET: DataElementsList/Details/5
@@ -38,7 +38,7 @@ namespace WebApplication.Controllers
                 return NotFound();
             }
 
-            var dataElement =  _context.ElementsList
+            var dataElement =  _data.ElementsList
                 .FirstOrDefault(m => m.Element == id);
             if (dataElement == null)
             {
@@ -61,7 +61,7 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.ElementsList.Add(dataElement);
+                _data.ElementsList.Add(dataElement);
                 return RedirectToAction(nameof(Index));
             }
             return View(dataElement);
@@ -75,7 +75,7 @@ namespace WebApplication.Controllers
                 return NotFound();
             }
 
-            var dataElement =  _context.ElementsList.FirstOrDefault(m => m.Element == id);
+            var dataElement =  _data.ElementsList.FirstOrDefault(m => m.Element == id);
             if (dataElement == null)
             {
                 return NotFound();
@@ -97,7 +97,7 @@ namespace WebApplication.Controllers
             {
                 try
                 {
-                    var entity = _context.ElementsList.FirstOrDefault(m => m.Element == id);
+                    var entity = _data.ElementsList.FirstOrDefault(m => m.Element == id);
                     if (entity == null)
                     {
                         return NotFound();
@@ -129,7 +129,7 @@ namespace WebApplication.Controllers
                 return NotFound();
             }
 
-            var dataElement =  _context.ElementsList
+            var dataElement =  _data.ElementsList
                 .FirstOrDefault(m => m.Element == id);
             if (dataElement == null)
             {
@@ -144,14 +144,14 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(string id)
         {
-            var dataElement =  _context.ElementsList.FirstOrDefault(m => m.Element == id);
-            _context.ElementsList.Remove(dataElement);
+            var dataElement =  _data.ElementsList.FirstOrDefault(m => m.Element == id);
+            _data.ElementsList.Remove(dataElement);
             return RedirectToAction(nameof(Index));
         }
 
         private bool DataElementExists(string id)
         {
-            return _context.ElementsList.Any(e => e.Element == id);
+            return _data.ElementsList.Any(e => e.Element == id);
         }
 
 
@@ -159,14 +159,14 @@ namespace WebApplication.Controllers
         public IActionResult SaveNewJsonFile()
         {
             string filepath = "Files\\NewFile.json";
-            dataManager.Save(_context, filepath);
+            dataManager.Save(_data, filepath);
             FileStream fs = new FileStream(filepath, FileMode.Open);
             return File(fs, "application/json", filepath);
         }
 
         public IActionResult ResaveJsonFile()
         {
-            dataManager.Save(_context, "Files\\testJson.json");
+            dataManager.Save(_data, "Files\\testJson.json");
             return View();
         }
 
@@ -174,7 +174,7 @@ namespace WebApplication.Controllers
         public IActionResult SaveNewDbFile()
         {
             string filepath = "Files\\NewDb.db";
-            dataManager.SaveToDB(_context, "Files\\NewDb.db");
+            dataManager.SaveToDB(_data, "Files\\NewDb.db");
             FileStream fs = new FileStream(filepath, FileMode.Open);
             return File(fs, "application/x-binary", filepath);
         }

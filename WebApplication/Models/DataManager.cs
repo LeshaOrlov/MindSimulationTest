@@ -48,15 +48,14 @@ namespace WebApplication
             if (File.Exists("Files\\DB.db"))
                 File.Copy("Files\\DB.db", nameDB, true);
             else throw new Exception("Files\\DB.db not exist!");
-            using (var connection = new SqliteConnection("Data Source="+ nameDB))
+            using (var connection = new SqliteConnection("Data Source=" + nameDB))
             {
                 connection.Open();
 
                 var command = connection.CreateCommand();
-                command.CommandText = 
-                "CREATE TABLE `Data` ( `Id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `FileName` TEXT NOT NULL, `Discription` TEXT, `Version` REAL ); " +
-                "CREATE TABLE `Element` ( `Id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `Element` TEXT NOT NULL, `ElementInfo` TEXT, `IsElement` INTEGER, `DataId` INTEGER ) ";
-
+                command.CommandText =
+                "CREATE TABLE `Data` ( `Id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `FileName` TEXT, `Version` REAL , `Discription` TEXT ); " +
+                "CREATE TABLE `Element` ( `Id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `Element` TEXT, `ElementInfo` TEXT, `IsElement` INTEGER ) ";
 
                 using (var reader = command.ExecuteReader())
                 {
@@ -70,14 +69,24 @@ namespace WebApplication
             }
         }
 
-        public void InsertData(Data data , string nameDB)
+        public void InsertData(Data data, string nameDB)
         {
-            using (var connection = new SqliteConnection("Data Source="+ nameDB))
+            using (var connection = new SqliteConnection("Data Source=" + nameDB))
             {
                 connection.Open();
 
                 var command = connection.CreateCommand();
                 StringBuilder commandTextBuilder = new StringBuilder();
+
+                commandTextBuilder.Append($"INSERT INTO Data (" +
+                    $"{nameof(data.FileName)}, " +
+                    $"{nameof(data.Version)}, " +
+                    $"{nameof(data.Discription)}) " +
+                    $"VALUES (" +
+                    $"\"{data.FileName}\", " +
+                    $"\"{data.Version}\", " +
+                    $"\"{data.Discription}\");");
+
                 foreach (var element in data.ElementsList)
                 {
                     commandTextBuilder.Append($"INSERT INTO Element (" +
@@ -91,19 +100,13 @@ namespace WebApplication
                 }
                 command.CommandText = commandTextBuilder.ToString();
                 command.ExecuteNonQuery();
-                //using (var reader = command.ExecuteReader())
-                //{
-                //    while (reader.Read())
-                //    {
-                //        var name = reader.GetString(0);
 
-                //        Console.WriteLine($"Hello, {name}!");
-                //    }
-                //}
+                
+
             }
 
         }
 
-        
+
     }
 }
