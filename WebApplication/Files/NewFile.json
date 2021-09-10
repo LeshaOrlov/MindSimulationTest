@@ -1,0 +1,17 @@
+﻿{
+  "FileName": "TestFile",
+  "Discription": "Данное задание направленно на оценку навыков и знаний в области веб-разработки .Net среды",
+  "Version": 1.01,
+  "ElementsList": [
+    {
+      "Element": "FirstElement",
+      "ElementInfo": "Это описание первого элемента",
+      "IsElement": true
+    },
+    {
+      "Element": "SecondElement",
+      "ElementInfo": "Это не настоящий элемент",
+      "IsElement": false
+    }
+  ]
+}

@@ -4,10 +4,21 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
+<h1>Список элементов</h1>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="SaveNewJsonFile">Создать новый файл JSON</a>
+</p>
+<p>
+    <a asp-action="ResaveJsonFile">Перезаписать файл JSON</a>
+</p>
+<p>
+    <a asp-action="SaveNewDbFile">Создать файл базы данных</a>
+</p>
+<p>
+    <hr />
+</p>
+<p>
+    <a asp-action="Create">Создать новый елемент</a>
 </p>
 <table class="table">
     <thead>
@@ -31,9 +42,9 @@
                 @Html.DisplayFor(modelItem => item.IsElement)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Element">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Element">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Element">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Element">Редактировать</a> |
+                <a asp-action="Details" asp-route-id="@item.Element">Детализировать</a> |
+                <a asp-action="Delete" asp-route-id="@item.Element">Удалить</a>
             </td>
         </tr>
 }

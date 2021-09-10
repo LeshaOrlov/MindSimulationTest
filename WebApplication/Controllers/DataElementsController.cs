@@ -155,21 +155,28 @@ namespace WebApplication.Controllers
         }
 
 
+        //функции для работы с файлом json
         public IActionResult SaveNewJsonFile()
         {
-            dataManager.Save(_context,"123.json");
-            return View();
+            string filepath = "Files\\NewFile.json";
+            dataManager.Save(_context, filepath);
+            FileStream fs = new FileStream(filepath, FileMode.Open);
+            return File(fs, "application/json", filepath);
         }
 
-        public IActionResult LoadNewJsonFile()
+        public IActionResult ResaveJsonFile()
         {
+            dataManager.Save(_context, "Files\\testJson.json");
             return View();
         }
 
+        //функции для работы с базой данных
         public IActionResult SaveNewDbFile()
         {
-            dataManager.SaveToDB(_context, "testDb");
-            return View();
+            string filepath = "Files\\NewDb.db";
+            dataManager.SaveToDB(_context, "Files\\NewDb.db");
+            FileStream fs = new FileStream(filepath, FileMode.Open);
+            return File(fs, "application/x-binary", filepath);
         }
     }
 }

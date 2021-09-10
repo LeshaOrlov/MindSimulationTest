@@ -46,8 +46,8 @@ namespace WebApplication
         public void initializiteDB(string nameDB)
         {
             if (File.Exists("Files\\DB.db"))
-                File.Copy("Files\\DB.db", nameDB);
-            else 
+                File.Copy("Files\\DB.db", nameDB, true);
+            else throw new Exception("Files\\DB.db not exist!");
             using (var connection = new SqliteConnection("Data Source="+ nameDB))
             {
                 connection.Open();
@@ -90,16 +90,16 @@ namespace WebApplication
                         $"{BooleanHelper.BoolToInt(element.IsElement)});");
                 }
                 command.CommandText = commandTextBuilder.ToString();
+                command.ExecuteNonQuery();
+                //using (var reader = command.ExecuteReader())
+                //{
+                //    while (reader.Read())
+                //    {
+                //        var name = reader.GetString(0);
 
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        var name = reader.GetString(0);
-
-                        Console.WriteLine($"Hello, {name}!");
-                    }
-                }
+                //        Console.WriteLine($"Hello, {name}!");
+                //    }
+                //}
             }
 
         }
